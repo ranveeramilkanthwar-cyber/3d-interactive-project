@@ -1,0 +1,20 @@
+{
+  "name": "holobio-3d-hologram-suite",
+  "version": "1.0.0",
+  "description": "Interactive 3D Holographic Human Anatomy and Biomechanical Diagnostic Suite",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "threejs",
+    "anatomy",
+    "biomechanics",
+    "hologram",
+    "medical",
+    "stitch"
+  ],
+  "author": "Antigravity",
+  "license": "MIT"
+}
