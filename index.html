@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+  <title>HOLOBIO 3D - Biomechanical Human Anatomy Hologram Suite</title>
+  <meta name="description" content="Interactive 3D Holographic Human Anatomy and Biomechanical Diagnostic Suite with full skeletal, muscular, organ, and nervous systems."/>
+
+  <!-- Google Fonts: Space Grotesk, Geist, JetBrains Mono, Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+  <!-- Theme & HUD Stylesheets -->
+  <link rel="stylesheet" href="css/theme.css"/>
+  <link rel="stylesheet" href="css/hud.css"/>
+</head>
+<body class="theme-cyber">
+  <div id="app-container">
+
+    <!-- ==========================================
+         TOP HUD HEADER BAR
+         ========================================== -->
+    <header class="hud-header">
+      <div class="header-left">
+        <div class="brand-badge">
+          <span class="pulse-dot"></span>
+          <span>BIO-SCAN v4.2</span>
+        </div>
+        <div>
+          <h1 class="app-title">HOLOBIO 3D</h1>
+          <span class="app-subtitle">BIOMECHANICAL HOLOGRAM SUITE</span>
+        </div>
+      </div>
+
+      <div class="header-center">
+        <!-- Theme Picker -->
+        <div class="theme-picker">
+          <span class="material-symbols-outlined" style="font-size: 16px; color: var(--primary);">palette</span>
+          <label for="theme-select" style="font-size: 0.68rem; color: var(--text-muted);">THEME:</label>
+          <select id="theme-select" class="theme-select">
+            <option value="cyber">Cyber Hologram (Surgical Cyan)</option>
+            <option value="spectral">Spectral Occult (Gothic Violet)</option>
+            <option value="photoreal">Clinical Photoreal (Anatomical)</option>
+            <option value="xray">X-Ray Fluoroscopy (High-Contrast)</option>
+            <option value="matrix">Matrix Bio-Emerald (Cybernetic)</option>
+            <option value="thermal">Biomechanical Strain (Heatmap)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <!-- Interactive Tool Buttons -->
+        <button id="btn-wireframe-toggle" class="btn-icon" title="Toggle Wireframe Mesh" type="button">
+          <span class="material-symbols-outlined" style="font-size: 19px;">grid_3x3</span>
+        </button>
+        <button id="btn-rotate-toggle" class="btn-icon active" title="Toggle 360° Turntable Rotation" type="button">
+          <span class="material-symbols-outlined" style="font-size: 19px;">sync</span>
+        </button>
+        <button id="btn-audio-toggle" class="btn-icon active" title="Toggle Audio Synthesizer" type="button">
+          <span class="material-symbols-outlined" style="font-size: 19px;">volume_up</span>
+        </button>
+        <button id="btn-open-ai-modal" class="btn-action" type="button">
+          <span class="material-symbols-outlined" style="font-size: 17px;">psychology</span>
+          <span>AI Biomechanical Simulator</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ==========================================
+         MAIN WORKSPACE 3-COLUMN VIEWPORT
+         ========================================== -->
+    <main class="hud-workspace">
+
+      <!-- LEFT NAVIGATION DOCK -->
+      <aside class="hud-left-dock">
+        <div class="dock-header">
+          <div class="dock-title">
+            <span>Anatomical Explorer</span>
+            <span class="material-symbols-outlined" style="font-size: 18px; color: var(--primary);">account_tree</span>
+          </div>
+        </div>
+
+        <div class="dock-content">
+          <!-- Search Input -->
+          <div class="search-container">
+            <span class="material-symbols-outlined search-icon">search</span>
+            <input type="text" id="search-input" class="search-input" placeholder="Search bones, muscles, organs..."/>
+          </div>
+
+          <!-- Layer Visibility Toggles -->
+          <div>
+            <div style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.35rem;">
+              ANATOMICAL LAYERS
+            </div>
+            <div class="layer-toggles-grid">
+              <button class="layer-btn active" data-layer="skeletal" type="button">
+                <span>Skeletal (Bones)</span>
+                <span class="layer-status-dot"></span>
+              </button>
+              <button class="layer-btn active" data-layer="muscular" type="button">
+                <span>Muscular</span>
+                <span class="layer-status-dot"></span>
+              </button>
+              <button class="layer-btn active" data-layer="organs" type="button">
+                <span>Visceral Organs</span>
+                <span class="layer-status-dot"></span>
+              </button>
+              <button class="layer-btn active" data-layer="nervous" type="button">
+                <span>Nervous System</span>
+                <span class="layer-status-dot"></span>
+              </button>
+              <button class="layer-btn active" data-layer="shell" type="button" style="grid-column: span 2;">
+                <span>Hologram Skin Envelope</span>
+                <span class="layer-status-dot"></span>
+              </button>
+            </div>
+          </div>
+
+          <!-- System Tabs Selector -->
+          <div class="system-tabs">
+            <div class="system-tab active" data-system="all">ALL</div>
+            <div class="system-tab" data-system="skeletal">BONE</div>
+            <div class="system-tab" data-system="muscular">MUSCLE</div>
+            <div class="system-tab" data-system="organs">ORGAN</div>
+            <div class="system-tab" data-system="nervous">NERVE</div>
+          </div>
+
+          <!-- Hierarchical Parts List -->
+          <div id="parts-list-container" class="parts-list">
+            <!-- Dynamically populated by hud-controller.js -->
+          </div>
+        </div>
+      </aside>
+
+      <!-- CENTER 3D STAGE VIEWPORT -->
+      <section class="hud-center-stage">
+        <!-- Three.js Canvas Container -->
+        <div id="threejs-viewport"></div>
+
+        <!-- Floating Top-Right Telemetry Ticker -->
+        <div class="stage-telemetry-badge">
+          <div class="telemetry-chip">
+            <span class="pulse-dot"></span>
+            <span>HOLOGRAPHIC CAD ACTIVE</span>
+          </div>
+          <div class="telemetry-chip" style="background: rgba(17, 24, 39, 0.7);">
+            <span>STEREOTACTIC GRID: 0.01mm REF</span>
+          </div>
+        </div>
+
+        <!-- Floating Bottom-Left Explode Slider Pod -->
+        <div class="stage-explode-pod">
+          <div class="explode-label">
+            <span>LAYER PEEL / EXPLODE</span>
+            <span id="explode-value">0%</span>
+          </div>
+          <input type="range" id="explode-slider" class="explode-slider" min="0" max="1" step="0.01" value="0"/>
+        </div>
+
+        <!-- Floating Camera Presets Dock -->
+        <div class="stage-camera-dock">
+          <button class="view-btn active" data-view="front" type="button">CORONAL</button>
+          <button class="view-btn" data-view="sagittal" type="button">SAGITTAL</button>
+          <button class="view-btn" data-view="top" type="button">AXIAL</button>
+          <button class="view-btn" data-view="spine" type="button">DORSAL</button>
+          <button class="view-btn" data-view="reset" type="button">RESET</button>
+        </div>
+      </section>
+
+      <!-- RIGHT DIAGNOSTICS & DOSSIER DOCK -->
+      <aside class="hud-right-dock">
+        <div class="dock-header">
+          <div class="dock-title">
+            <span>Diagnostic Dossier</span>
+            <span class="material-symbols-outlined" style="font-size: 18px; color: var(--primary);">biomedical</span>
+          </div>
+        </div>
+
+        <div id="dossier-content" class="dock-content">
+          <!-- Dynamically populated by hud-controller.js -->
+        </div>
+      </aside>
+
+    </main>
+
+    <!-- ==========================================
+         BOTTOM SPINE LEVEL QUICK SCRUBBER DOCK
+         ========================================== -->
+    <footer class="hud-bottom-spine-dock">
+      <div style="display: flex; align-items: center; gap: 0.4rem;">
+        <span class="material-symbols-outlined" style="font-size: 18px; color: var(--primary);">reorder</span>
+        <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); font-weight: 600;">VERTEBRAL COLUMN:</span>
+      </div>
+
+      <div class="spine-segment-pills">
+        <button class="spine-pill-btn" data-segment="cervical" type="button">
+          <div>C1–C7</div>
+          <div style="font-size: 0.58rem; opacity: 0.75;">CERVICAL</div>
+        </button>
+        <button class="spine-pill-btn" data-segment="thoracic" type="button">
+          <div>T1–T12</div>
+          <div style="font-size: 0.58rem; opacity: 0.75;">THORACIC</div>
+        </button>
+        <button class="spine-pill-btn" data-segment="lumbar" type="button">
+          <div>L1–L5</div>
+          <div style="font-size: 0.58rem; opacity: 0.75;">LUMBAR</div>
+        </button>
+        <button class="spine-pill-btn" data-segment="sacral" type="button">
+          <div>S1–COCCYX</div>
+          <div style="font-size: 0.58rem; opacity: 0.75;">SACRAL</div>
+        </button>
+      </div>
+
+      <div style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--tertiary);">
+        360° DRAG TO ORBIT • SCROLL TO ZOOM
+      </div>
+    </footer>
+
+    <!-- ==========================================
+         AI HOLOGRAM GENERATOR / SIMULATOR MODAL
+         ========================================== -->
+    <div id="ai-modal-overlay" class="modal-overlay">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <div class="modal-title">
+            <span class="material-symbols-outlined" style="font-size: 22px;">neurology</span>
+            <span>AI Neural Hologram Simulator & Model Trainer</span>
+          </div>
+          <button id="btn-close-ai-modal" class="btn-icon" type="button">
+            <span class="material-symbols-outlined" style="font-size: 18px;">close</span>
+          </button>
+        </div>
+
+        <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.45;">
+          Select a pre-trained clinical biomechanical scenario or enter a custom prompt to simulate physical loads, traumatic injury vectors, or metabolic cardiac surges in real-time.
+        </p>
+
+        <!-- Pre-trained Clinical Scenarios -->
+        <div id="sim-scenarios-list" class="sim-scenarios-grid">
+          <!-- Dynamically populated by hud-controller.js -->
+        </div>
+
+        <!-- Custom Prompt Input -->
+        <div class="custom-prompt-container">
+          <input type="text" id="custom-ai-prompt" class="custom-prompt-input" placeholder="Prompt AI: e.g. 'Simulate heavy squat load on L4-L5 and Quadriceps'"/>
+          <button id="btn-run-ai-prompt" class="btn-action" type="button">
+            <span class="material-symbols-outlined" style="font-size: 16px;">bolt</span>
+            <span>Simulate</span>
+          </button>
+        </div>
+
+        <!-- Live AI Diagnostic Terminal Stream -->
+        <div id="ai-output-stream" class="ai-output-box">
+          <em>> Neural Holographic Engine ready. Select a scenario or enter a custom prompt above.</em>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Local Libraries with guaranteed offline execution -->
+  <script src="lib/three.min.js"></script>
+  <script src="lib/OrbitControls.js"></script>
+
+  <!-- Application Logic Modules -->
+  <script src="js/data/anatomy-data.js"></script>
+  <script src="js/audio/sfx.js"></script>
+  <script src="js/three/body-models.js"></script>
+  <script src="js/three/hologram-engine.js"></script>
+  <script src="js/ui/hud-controller.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
