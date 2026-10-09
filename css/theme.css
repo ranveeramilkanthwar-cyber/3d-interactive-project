@@ -1,0 +1,173 @@
+/**
+ * HOLOBIO 3D - Design System & Theme Stylesheet
+ * Faithful implementation of Google Stitch's Biomechanical Surgical Dark HUD.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+  /* Default: Cyber Hologram Theme (Stitch Cyan / Medical Blue) */
+  --bg-void: #051424;
+  --bg-surface-1: rgba(11, 15, 23, 0.88);
+  --bg-surface-2: rgba(17, 24, 39, 0.92);
+  --bg-surface-3: #1e293b;
+  
+  --primary: #00f0ff;
+  --primary-glow: rgba(0, 240, 255, 0.35);
+  --primary-container: #00dbe9;
+  
+  --secondary: #0ea5e9;
+  --tertiary: #38bdf8;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-dark: #00363a;
+  
+  --accent-alert: #ff3366;
+  --accent-alert-glow: rgba(255, 51, 102, 0.4);
+  --accent-amber: #f59e0b;
+  --accent-green: #10b981;
+
+  --border-hairline: rgba(56, 189, 248, 0.16);
+  --border-focus: rgba(0, 240, 255, 0.55);
+
+  --font-display: 'Space Grotesk', -apple-system, sans-serif;
+  --font-body: 'Geist', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+  
+  --hud-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+  --card-glow: 0 0 24px -4px rgba(0, 240, 255, 0.22);
+}
+
+/* Theme 2: Spectral Occult (Stitch Three.js 2 Gothic Violet) */
+body.theme-spectral {
+  --bg-void: #12091f;
+  --bg-surface-1: rgba(20, 10, 35, 0.9);
+  --bg-surface-2: rgba(30, 16, 52, 0.94);
+  --bg-surface-3: #3b186b;
+  
+  --primary: #c084fc;
+  --primary-glow: rgba(192, 132, 252, 0.4);
+  --primary-container: #a855f7;
+  
+  --secondary: #e879f9;
+  --tertiary: #d8b4fe;
+  --border-hairline: rgba(168, 85, 247, 0.22);
+  --border-focus: rgba(232, 121, 249, 0.6);
+  --card-glow: 0 0 24px -4px rgba(168, 85, 247, 0.3);
+}
+
+/* Theme 3: Clinical Photoreal */
+body.theme-photoreal {
+  --bg-void: #0b1120;
+  --bg-surface-1: rgba(15, 23, 42, 0.9);
+  --bg-surface-2: rgba(30, 41, 59, 0.94);
+  --bg-surface-3: #475569;
+  
+  --primary: #38bdf8;
+  --primary-glow: rgba(56, 189, 248, 0.35);
+  --primary-container: #0284c7;
+  
+  --secondary: #e2e8f0;
+  --tertiary: #94a3b8;
+  --border-hairline: rgba(148, 163, 184, 0.2);
+  --border-focus: rgba(56, 189, 248, 0.5);
+  --card-glow: 0 0 24px -4px rgba(56, 189, 248, 0.2);
+}
+
+/* Theme 4: X-Ray Fluoroscopy */
+body.theme-xray {
+  --bg-void: #020617;
+  --bg-surface-1: rgba(15, 23, 42, 0.92);
+  --bg-surface-2: rgba(30, 41, 59, 0.95);
+  --bg-surface-3: #334155;
+  
+  --primary: #ffffff;
+  --primary-glow: rgba(255, 255, 255, 0.4);
+  --primary-container: #e2e8f0;
+  
+  --secondary: #94a3b8;
+  --tertiary: #cbd5e1;
+  --border-hairline: rgba(255, 255, 255, 0.2);
+  --border-focus: rgba(255, 255, 255, 0.7);
+  --card-glow: 0 0 24px -4px rgba(255, 255, 255, 0.25);
+}
+
+/* Theme 5: Matrix Bio-Emerald */
+body.theme-matrix {
+  --bg-void: #021a10;
+  --bg-surface-1: rgba(4, 38, 24, 0.9);
+  --bg-surface-2: rgba(6, 56, 36, 0.94);
+  --bg-surface-3: #065f46;
+  
+  --primary: #10b981;
+  --primary-glow: rgba(16, 185, 129, 0.4);
+  --primary-container: #34d399;
+  
+  --secondary: #6ee7b7;
+  --tertiary: #a7f3d0;
+  --border-hairline: rgba(16, 185, 129, 0.25);
+  --border-focus: rgba(52, 211, 153, 0.6);
+  --card-glow: 0 0 24px -4px rgba(16, 185, 129, 0.3);
+}
+
+/* Theme 6: Biomechanical Strain Heatmap */
+body.theme-thermal {
+  --bg-void: #0d1117;
+  --bg-surface-1: rgba(22, 27, 34, 0.9);
+  --bg-surface-2: rgba(33, 38, 45, 0.94);
+  --bg-surface-3: #30363d;
+  
+  --primary: #f59e0b;
+  --primary-glow: rgba(245, 158, 11, 0.4);
+  --primary-container: #ef4444;
+  
+  --secondary: #3b82f6;
+  --tertiary: #fbbf24;
+  --border-hairline: rgba(245, 158, 11, 0.25);
+  --border-focus: rgba(239, 68, 68, 0.6);
+  --card-glow: 0 0 24px -4px rgba(245, 158, 11, 0.25);
+}
+
+/* Base resets */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--bg-void);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography Helpers */
+.font-display { font-family: var(--font-display); }
+.font-body { font-family: var(--font-body); }
+.font-mono { font-family: var(--font-mono); }
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-hairline);
+  border-radius: var(--radius-sm);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}

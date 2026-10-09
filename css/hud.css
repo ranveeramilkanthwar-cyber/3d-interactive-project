@@ -1,0 +1,854 @@
+/**
+ * HOLOBIO 3D - HUD Layout & Interface Components
+ */
+
+/* Main Container Grid */
+#app-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background-color: var(--bg-void);
+}
+
+/* ==========================================
+   HEADER HUD STRIP
+   ========================================== */
+.hud-header {
+  height: 56px;
+  background: var(--bg-surface-1);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-hairline);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.25rem;
+  z-index: 50;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.header-left, .header-center, .header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.6rem;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  color: var(--primary);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 8px var(--primary);
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.app-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+.app-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+/* Theme Dropdown / Switcher */
+.theme-picker {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  padding: 0.25rem 0.5rem;
+  color: var(--text-main);
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+}
+
+.theme-select {
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  cursor: pointer;
+  outline: none;
+}
+.theme-select option {
+  background: #0b0f17;
+  color: #fff;
+}
+
+/* Control Icon Buttons */
+.btn-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-hairline);
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-icon:hover {
+  background: rgba(0, 240, 255, 0.12);
+  border-color: var(--primary);
+  color: var(--primary);
+  box-shadow: 0 0 12px var(--primary-glow);
+}
+.btn-icon.active {
+  background: rgba(0, 240, 255, 0.18);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Action Primary Button */
+.btn-action {
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-sm);
+  background: rgba(0, 240, 255, 0.12);
+  border: 1px solid var(--border-focus);
+  color: var(--primary);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-action:hover {
+  background: rgba(0, 240, 255, 0.25);
+  box-shadow: 0 0 16px var(--primary-glow);
+  transform: translateY(-1px);
+}
+
+/* ==========================================
+   WORKSPACE 3-COLUMN VIEWPORT
+   ========================================== */
+.hud-workspace {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Left Navigation Dock */
+.hud-left-dock {
+  width: 320px;
+  background: var(--bg-surface-1);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid var(--border-hairline);
+  display: flex;
+  flex-direction: column;
+  z-index: 20;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Right Diagnostics Dock */
+.hud-right-dock {
+  width: 380px;
+  background: var(--bg-surface-1);
+  backdrop-filter: blur(20px);
+  border-left: 1px solid var(--border-hairline);
+  display: flex;
+  flex-direction: column;
+  z-index: 20;
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.4);
+  overflow-y: auto;
+}
+
+/* Center 3D Hologram Stage */
+.hud-center-stage {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+#threejs-viewport {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* ==========================================
+   LEFT DOCK COMPONENTS
+   ========================================== */
+.dock-header {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.dock-title {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dock-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+/* Search Input */
+.search-container {
+  position: relative;
+  width: 100%;
+}
+.search-input {
+  width: 100%;
+  padding: 0.45rem 0.6rem 0.45rem 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.search-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 10px var(--primary-glow);
+}
+.search-icon {
+  position: absolute;
+  left: 0.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
+/* Layer Filter Pills */
+.layer-toggles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.4rem;
+}
+.layer-btn {
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface-2);
+  border: 1px solid var(--border-hairline);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.layer-btn.active {
+  background: rgba(0, 240, 255, 0.12);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.layer-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+.layer-btn.active .layer-status-dot {
+  background: var(--primary);
+  box-shadow: 0 0 6px var(--primary);
+}
+
+/* System Tab Selectors */
+.system-tabs {
+  display: flex;
+  gap: 0.25rem;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 0.25rem;
+  border-radius: var(--radius-sm);
+}
+.system-tab {
+  flex: 1;
+  text-align: center;
+  padding: 0.35rem 0;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.system-tab.active {
+  background: var(--bg-surface-3);
+  color: var(--primary);
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+/* Anatomy Items Tree / List */
+.parts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.part-card {
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface-2);
+  border: 1px solid var(--border-hairline);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.part-card:hover {
+  background: rgba(0, 240, 255, 0.08);
+  border-color: var(--border-focus);
+  transform: translateX(2px);
+}
+.part-card.active {
+  background: rgba(0, 240, 255, 0.16);
+  border-color: var(--primary);
+  box-shadow: var(--card-glow);
+}
+.part-card-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.part-card-icon {
+  color: var(--tertiary);
+  font-size: 1.1rem;
+}
+.part-card-name {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-main);
+}
+.part-card-latin {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+.part-card-tag {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  padding: 0.15rem 0.35rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--secondary);
+}
+
+/* ==========================================
+   CENTER STAGE OVERLAYS
+   ========================================== */
+/* Floating Top-Right Telemetry Ticker */
+.stage-telemetry-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+  pointer-events: none;
+}
+.telemetry-chip {
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-surface-1);
+  border: 1px solid var(--border-hairline);
+  backdrop-filter: blur(12px);
+  color: var(--primary);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* Floating Bottom Camera / Perspective Dock */
+.stage-camera-dock {
+  position: absolute;
+  bottom: 5.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  background: var(--bg-surface-1);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-full);
+  padding: 0.35rem 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: var(--hud-shadow);
+}
+.view-btn {
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-full);
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.view-btn:hover {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.05);
+}
+.view-btn.active {
+  background: rgba(0, 240, 255, 0.2);
+  color: var(--primary);
+}
+
+/* Explode Slider Floating Pod */
+.stage-explode-pod {
+  position: absolute;
+  left: 1rem;
+  bottom: 5.5rem;
+  z-index: 15;
+  background: var(--bg-surface-1);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  box-shadow: var(--hud-shadow);
+  width: 180px;
+}
+.explode-label {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--tertiary);
+  font-weight: 600;
+}
+.explode-slider {
+  width: 100%;
+  height: 4px;
+  background: var(--bg-surface-3);
+  border-radius: 2px;
+  outline: none;
+  -webkit-appearance: none;
+}
+.explode-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  background: var(--primary);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--primary);
+  cursor: pointer;
+}
+
+/* ==========================================
+   RIGHT DIAGNOSTICS & DOSSIER DOCK
+   ========================================== */
+.dossier-card {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.dossier-tag-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dossier-system-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  background: rgba(0, 240, 255, 0.12);
+  color: var(--primary);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.dossier-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+.dossier-latin {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--secondary);
+  font-style: italic;
+}
+
+.dossier-summary {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Telemetry Metrics Dials Grid */
+.telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.65rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-hairline);
+}
+.metric-box {
+  display: flex;
+  flex-direction: column;
+}
+.metric-title {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.metric-value {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-top: 0.1rem;
+}
+.metric-sub {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+}
+
+/* Section Card Container */
+.info-section-card {
+  background: var(--bg-surface-2);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.info-section-title {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.info-section-body {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+/* Pathology Warnings Box */
+.pathology-box {
+  background: rgba(255, 51, 102, 0.08);
+  border: 1px solid var(--accent-alert-glow);
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.pathology-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent-alert);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.pathology-item {
+  font-size: 0.78rem;
+  color: #fca5a5;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.3rem;
+  line-height: 1.35;
+}
+
+/* Medical Trivia / Fun Fact Box */
+.trivia-box {
+  background: rgba(0, 240, 255, 0.06);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.trivia-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.trivia-text {
+  font-size: 0.78rem;
+  color: var(--text-main);
+  line-height: 1.4;
+  font-style: italic;
+}
+
+/* ==========================================
+   BOTTOM SPINE LEVEL QUICK SCRUBBER DOCK
+   ========================================== */
+.hud-bottom-spine-dock {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 52px;
+  background: var(--bg-surface-1);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border-hairline);
+  z-index: 45;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.25rem;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.spine-segment-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 1;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.spine-pill-btn {
+  flex: 1;
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-hairline);
+  color: var(--secondary);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.spine-pill-btn:hover {
+  background: rgba(0, 240, 255, 0.15);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.spine-pill-btn.active {
+  background: rgba(0, 240, 255, 0.25);
+  border-color: var(--primary);
+  color: var(--primary);
+  box-shadow: 0 0 12px var(--primary-glow);
+}
+
+/* ==========================================
+   AI HOLOGRAM MODEL GENERATOR MODAL
+   ========================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 14, 28, 0.85);
+  backdrop-filter: blur(20px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-dialog {
+  width: 90%;
+  max-width: 720px;
+  background: var(--bg-surface-2);
+  border: 1px solid var(--border-focus);
+  box-shadow: 0 0 35px var(--primary-glow);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+.modal-overlay.open .modal-dialog {
+  transform: translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-hairline);
+  padding-bottom: 0.75rem;
+}
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sim-scenarios-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+.sim-scenario-card {
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-hairline);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.sim-scenario-card:hover {
+  border-color: var(--primary);
+  background: rgba(0, 240, 255, 0.08);
+}
+.sim-scenario-title {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+.sim-scenario-sub {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--secondary);
+  margin-top: 0.2rem;
+}
+
+.custom-prompt-container {
+  display: flex;
+  gap: 0.5rem;
+}
+.custom-prompt-input {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  outline: none;
+}
+.custom-prompt-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 10px var(--primary-glow);
+}
+
+.ai-output-box {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem;
+  min-height: 85px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--primary);
+  line-height: 1.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .hud-left-dock {
+    width: 260px;
+  }
+  .hud-right-dock {
+    width: 300px;
+  }
+}
+@media (max-width: 768px) {
+  .hud-workspace {
+    flex-direction: column;
+  }
+  .hud-left-dock, .hud-right-dock {
+    width: 100%;
+    height: 240px;
+  }
+  .stage-camera-dock {
+    bottom: 4rem;
+  }
+}
