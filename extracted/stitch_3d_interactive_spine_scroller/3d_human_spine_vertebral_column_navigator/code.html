@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#051424;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-tertiary-fixed": "#001e2c", "surface-tint": "#00dbe9", "secondary-container": "#00a2e6", "on-error": "#690005", "on-tertiary": "#00354a", "secondary": "#89ceff", "on-surface-variant": "#b9cacb", "on-secondary-container": "#00344e", "on-primary-fixed-variant": "#004f54", "surface-dim": "#051424", "tertiary": "#eef7ff", "error": "#ffb4ab", "on-error-container": "#ffdad6", "surface": "#051424", "outline-variant": "#3b494b", "on-secondary-fixed-variant": "#004c6e", "on-primary": "#00363a", "surface-container": "#122131", "on-tertiary-container": "#00668b", "surface-container-high": "#1c2b3c", "surface-variant": "#273647", "primary-fixed": "#7df4ff", "surface-container-highest": "#273647", "on-surface": "#d4e4fa", "primary-fixed-dim": "#00dbe9", "outline": "#849495", "on-secondary-fixed": "#001e2f", "primary-container": "#00f0ff", "tertiary-fixed-dim": "#7bd0ff", "secondary-fixed": "#c9e6ff", "surface-container-lowest": "#010f1f", "inverse-on-surface": "#233143", "on-primary-container": "#006970", "inverse-surface": "#d4e4fa", "inverse-primary": "#006970", "surface-bright": "#2c3a4c", "on-primary-fixed": "#002022", "error-container": "#93000a", "on-secondary": "#00344d", "tertiary-container": "#aee0ff", "primary": "#dbfcff", "on-tertiary-fixed-variant": "#004c69", "surface-container-low": "#0d1c2d", "tertiary-fixed": "#c4e7ff", "on-background": "#d4e4fa", "background": "#051424", "secondary-fixed-dim": "#89ceff" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "gutter-desktop": "1.5rem", "gutter": "1rem", "margin": "1rem", "space-lg": "1.5rem", "margin-desktop": "2rem", "space-sm": "0.5rem", "space-md": "1rem", "space-xs": "0.25rem", "space-xl": "2rem" }, "fontFamily": { "headline-xl": ["Space Grotesk"], "headline-lg": ["Space Grotesk"], "body-md": ["Geist"], "body-sm": ["Geist"], "headline-lg-mobile": ["Space Grotesk"], "headline-sm": ["Space Grotesk"], "label-md": ["JetBrains Mono"], "label-lg": ["JetBrains Mono"], "label-sm": ["JetBrains Mono"], "headline-xl-mobile": ["Space Grotesk"], "body-lg": ["Geist"], "headline-md": ["Space Grotesk"] }, "fontSize": { "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "400" }], "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.015em", "fontWeight": "400" }], "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "0em", "fontWeight": "500" }], "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "500" }], "label-md": ["11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "500" }], "label-lg": ["13px", { "lineHeight": "18px", "letterSpacing": "0.04em", "fontWeight": "500" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" }], "headline-xl-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "400" }], "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.005em", "fontWeight": "500" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-surface text-on-surface font-body-md text-body-md flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 pt-safe bg-surface-container-lowest/80 backdrop-blur-xl shadow-[0_4px_20px_rgba(0,0,0,0.4)]"><div class="h-16 px-margin flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="flex items-center gap-space-xs px-space-sm py-1 bg-surface-container rounded-lg"><span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span><span class="font-label-sm text-label-sm text-primary-container tracking-wider uppercase">BIO-SCAN v3.4</span></div><span class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">Cervical Navigator</span></div><div class="flex items-center gap-space-xs"><button aria-label="Haptic Audio Feedback Toggle" class="w-11 h-11 flex items-center justify-center rounded-lg bg-surface-container-high/60 text-secondary hover:text-primary transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">vibration</span></button><button aria-label="Reset Spatial Coordinates" class="w-11 h-11 flex items-center justify-center rounded-lg bg-surface-container-high/60 text-secondary hover:text-primary transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">screen_rotation_alt</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-space-xs"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 w-full bg-surface pt-16 pb-20"><div class="flex flex-col w-full relative">
+<!-- STITCH_THREEJS_START:ANIMATION_1 class="fixed inset-0 w-full h-full pointer-events-auto z-0" -->
+<div class="fixed inset-0 w-full h-full pointer-events-auto z-0" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_1" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_1');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  // Three.js interactive 3D Human Vertebral Column / Spine with scroll/touch-driven inspection
+const width = container.clientWidth || window.innerWidth || 390;
+const height = container.clientHeight || window.innerHeight || 600;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+camera.position.set(0, 0, 18);
+
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+container.appendChild(renderer.domElement);
+
+// Lighting
+const ambientLight = new THREE.AmbientLight(0x38bdf8, 0.7);
+scene.add(ambientLight);
+
+const dirLight1 = new THREE.DirectionalLight(0xffffff, 1.4);
+dirLight1.position.set(5, 10, 8);
+scene.add(dirLight1);
+
+const dirLight2 = new THREE.DirectionalLight(0x0284c7, 1.2);
+dirLight2.position.set(-6, -8, -5);
+scene.add(dirLight2);
+
+const pointLight = new THREE.PointLight(0x00f0ff, 1.5, 30);
+pointLight.position.set(0, 2, 5);
+scene.add(pointLight);
+
+// Group for the entire spine
+const spineGroup = new THREE.Group();
+scene.add(spineGroup);
+
+// Materials for bone, intervertebral discs, and nervous spinal cord
+const boneMaterial = new THREE.MeshPhongMaterial({
+  color: 0xedf2f7,
+  emissive: 0x0f172a,
+  specular: 0x38bdf8,
+  shininess: 40,
+  flatShading: false
+});
+
+const discMaterial = new THREE.MeshPhongMaterial({
+  color: 0x0284c7,
+  emissive: 0x0369a1,
+  transparent: true,
+  opacity: 0.85,
+  shininess: 70
+});
+
+const cordMaterial = new THREE.MeshPhongMaterial({
+  color: 0x00f0ff,
+  emissive: 0x00b4d8,
+  shininess: 90
+});
+
+// Construct a detailed anatomical human spine assembly:
+// Cervical (7), Thoracic (12), Lumbar (5), Sacrum/Coccyx unit
+const totalVertebrae = 24;
+const vertebraeMeshes = [];
+
+for (let i = 0; i < totalVertebrae; i++) {
+  const vGroup = new THREE.Group();
+  
+  // Progress from top (C1) to bottom (L5)
+  const t = i / (totalVertebrae - 1);
+  const yPos = 8.5 - (i * 0.7);
+  
+  // Natural S-curvature of human spine (Lordosis & Kyphosis)
+  const zCurve = Math.sin(t * Math.PI * 2.2) * 1.3 - 0.4;
+  
+  // Scale increases from cervical to lumbar
+  const scale = 0.55 + (t * 0.7);
+  
+  // 1. Vertebral Body (Centrum - cylindrical/kidney shape)
+  const bodyGeo = new THREE.CylinderGeometry(0.7 * scale, 0.75 * scale, 0.35 * scale, 16);
+  const bodyMesh = new THREE.Mesh(bodyGeo, boneMaterial);
+  bodyMesh.rotation.y = Math.PI / 8;
+  vGroup.add(bodyMesh);
+
+  // 2. Intervertebral Disc underneath (cushion)
+  if (i < totalVertebrae - 1) {
+    const discGeo = new THREE.CylinderGeometry(0.68 * scale, 0.72 * scale, 0.14 * scale, 14);
+    const discMesh = new THREE.Mesh(discGeo, discMaterial);
+    discMesh.position.y = -0.24 * scale;
+    vGroup.add(discMesh);
+  }
+
+  // 3. Spinous Process (the dorsal ridge/backbone protrusion users feel along their back)
+  const spinousGeo = new THREE.ConeGeometry(0.24 * scale, 1.2 * scale, 8);
+  const spinousMesh = new THREE.Mesh(spinousGeo, boneMaterial);
+  spinousMesh.position.set(0, -0.15 * scale, -0.75 * scale);
+  spinousMesh.rotation.x = -Math.PI / 2.3;
+  vGroup.add(spinousMesh);
+
+  // 4. Transverse Processes (left & right lateral wings)
+  const transGeo = new THREE.BoxGeometry(1.6 * scale, 0.18 * scale, 0.3 * scale);
+  const transMesh = new THREE.Mesh(transGeo, boneMaterial);
+  transMesh.position.set(0, 0, -0.3 * scale);
+  transMesh.rotation.z = Math.sin(i * 0.5) * 0.05;
+  vGroup.add(transMesh);
+
+  // 5. Vertebral Arch / Pedicles
+  const archGeo = new THREE.TorusGeometry(0.42 * scale, 0.09 * scale, 6, 12, Math.PI * 1.1);
+  const archMesh = new THREE.Mesh(archGeo, boneMaterial);
+  archMesh.position.set(0, 0, -0.25 * scale);
+  archMesh.rotation.x = Math.PI / 2;
+  vGroup.add(archMesh);
+
+  vGroup.position.set(0, yPos, zCurve);
+  vGroup.userData = { index: i, baseY: yPos, baseZ: zCurve };
+  vertebraeMeshes.push(vGroup);
+  spineGroup.add(vGroup);
+}
+
+// Sacrum & Coccyx base unit
+const sacrumGroup = new THREE.Group();
+const sacrumGeo = new THREE.ConeGeometry(1.3, 2.4, 5);
+const sacrumMesh = new THREE.Mesh(sacrumGeo, boneMaterial);
+sacrumMesh.rotation.x = Math.PI + 0.35;
+sacrumMesh.position.set(0, -9.2, 0.2);
+sacrumGroup.add(sacrumMesh);
+spineGroup.add(sacrumGroup);
+
+// Internal glowing spinal cord running along dorsal canal
+const curvePoints = [];
+for (let i = 0; i < totalVertebrae; i++) {
+  const t = i / (totalVertebrae - 1);
+  const y = 8.5 - (i * 0.7);
+  const z = (Math.sin(t * Math.PI * 2.2) * 1.3 - 0.4) - 0.25;
+  curvePoints.push(new THREE.Vector3(0, y, z));
+}
+curvePoints.push(new THREE.Vector3(0, -9.0, 0.1));
+const cordCurve = new THREE.CatmullRomCurve3(curvePoints);
+const cordGeo = new THREE.TubeGeometry(cordCurve, 40, 0.08, 8, false);
+const cordMesh = new THREE.Mesh(cordGeo, cordMaterial);
+spineGroup.add(cordMesh);
+
+// Floating glowing neural bio-particles along spine
+const particleCount = 45;
+const partGeo = new THREE.BufferGeometry();
+const partPositions = new Float32Array(particleCount * 3);
+for (let i = 0; i < particleCount; i++) {
+  const t = Math.random();
+  const pt = cordCurve.getPoint(t);
+  partPositions[i * 3] = pt.x + (Math.random() - 0.5) * 1.4;
+  partPositions[i * 3 + 1] = pt.y + (Math.random() - 0.5) * 0.5;
+  partPositions[i * 3 + 2] = pt.z + (Math.random() - 0.5) * 1.2;
+}
+partGeo.setAttribute('position', new THREE.BufferAttribute(partPositions, 3));
+const partMat = new THREE.PointsMaterial({
+  color: 0x38bdf8,
+  size: 0.18,
+  transparent: true,
+  opacity: 0.8
+});
+const particles = new THREE.Points(partGeo, partMat);
+spineGroup.add(particles);
+
+// Interaction & Scroll Synchronization
+let scrollProgress = 0;
+let targetScrollProgress = 0;
+let mouseX = 0;
+let targetRotY = 0;
+
+function updateScrollProgress() {
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  if (maxScroll > 0) {
+    targetScrollProgress = window.scrollY / maxScroll;
+  }
+}
+window.addEventListener('scroll', updateScrollProgress, { passive: true });
+
+// Touch / Mouse lateral drag for 360 degree spin
+let isTouching = false;
+let startX = 0;
+window.addEventListener('pointerdown', (e) => {
+  isTouching = true;
+  startX = e.clientX;
+});
+window.addEventListener('pointermove', (e) => {
+  if (isTouching) {
+    const deltaX = (e.clientX - startX) * 0.01;
+    targetRotY += deltaX;
+    startX = e.clientX;
+  }
+});
+window.addEventListener('pointerup', () => { isTouching = false; });
+window.addEventListener('pointercancel', () => { isTouching = false; });
+
+// Resize handling
+window.addEventListener('resize', () => {
+  const w = container.clientWidth || window.innerWidth || 390;
+  const h = container.clientHeight || window.innerHeight || 600;
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h);
+});
+
+// Animation Loop
+let clock = new THREE.Clock();
+function animate() {
+  requestAnimationFrame(animate);
+  const delta = clock.getDelta();
+  const time = clock.getElapsedTime();
+
+  // Smooth lerp scroll progress
+  scrollProgress += (targetScrollProgress - scrollProgress) * 0.08;
+
+  // Move camera / spine along vertical axis to follow user scroll through Cervical -> Thoracic -> Lumbar -> Sacrum
+  // When at top (scroll=0), focus on Cervical (y ~ 7)
+  // When scrolled down, track down the spine to Lumbar/Sacrum (y ~ -8)
+  const targetCamY = 7.0 - (scrollProgress * 15.0);
+  camera.position.y += (targetCamY - camera.position.y) * 0.07;
+  camera.lookAt(0, camera.position.y * 0.9, 0);
+
+  // Rotation response
+  spineGroup.rotation.y += (targetRotY + (Math.sin(time * 0.7) * 0.25) - spineGroup.rotation.y) * 0.05;
+  
+  // Gentle breathing / organic articulation of vertebrae
+  vertebraeMeshes.forEach((v, idx) => {
+    const wave = Math.sin(time * 2.0 + idx * 0.25) * 0.02;
+    v.rotation.x = wave;
+  });
+
+  // Pulse disc glows
+  discMaterial.opacity = 0.75 + Math.sin(time * 3.0) * 0.2;
+  pointLight.position.y = camera.position.y + Math.sin(time) * 2;
+
+  renderer.render(scene, camera);
+}
+animate();
+
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_1 -->
+<div class="fixed top-20 right-3 z-30 pointer-events-none flex flex-col gap-1 items-end">
+<div class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md shadow-md text-primary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-ping"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">3D ACTIVE</span>
+</div>
+<div class="px-2 py-0.5 rounded-full bg-surface-container-low/75 backdrop-blur-md shadow-sm text-secondary">
+<span class="font-label-sm text-[9px] tracking-widest font-mono">DORSAL: 0.02mm REF</span>
+</div>
+</div>
+<section class="h-[724px] relative z-10 flex flex-col justify-between pt-2 pb-6 px-4 pointer-events-none">
+<div class="flex flex-wrap gap-2 pointer-events-auto">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high/90 text-primary-container shadow-md">
+<span class="material-symbols-outlined text-[14px]">view_in_ar</span>
+<span class="font-label-sm text-label-sm">BIO-MECHANICAL REALTIME CAD</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high/80 text-secondary shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-fixed-dim animate-pulse"></span>
+<span class="font-label-sm text-label-sm">DORSAL RIDGE SENSOR ACTIVE</span>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center my-auto text-center pointer-events-none">
+<div class="w-12 h-12 rounded-full bg-surface-container-lowest/60 backdrop-blur-md flex items-center justify-center text-primary-container mb-2 shadow-lg animate-pulse">
+<span class="material-symbols-outlined text-[24px]">swipe_vertical</span>
+</div>
+<div class="px-3 py-1.5 rounded-lg bg-surface-container-lowest/85 backdrop-blur-lg shadow-xl text-tertiary">
+<p class="font-label-md text-label-md text-primary tracking-wide uppercase">Drag laterally to rotate 3D spine</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-80">Scroll vertically to scan vertebral levels</p>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-2 pointer-events-auto">
+<div class="bg-surface-container-lowest/90 backdrop-blur-xl p-2.5 rounded-lg shadow-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary-fixed-dim uppercase tracking-wider">AXIAL LOAD</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold mt-0.5">420<span class="text-xs text-secondary ml-0.5">N</span></span>
+<span class="font-label-sm text-[9px] text-on-surface-variant">Neutral baseline</span>
+</div>
+<div class="bg-surface-container-lowest/90 backdrop-blur-xl p-2.5 rounded-lg shadow-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary-fixed-dim uppercase tracking-wider">FLEXION</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold mt-0.5">14.2<span class="text-xs text-secondary ml-0.5">°</span></span>
+<span class="font-label-sm text-[9px] text-on-surface-variant">Sagittal arc</span>
+</div>
+<div class="bg-surface-container-lowest/90 backdrop-blur-xl p-2.5 rounded-lg shadow-lg flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary-fixed-dim uppercase tracking-wider">PRESSURE</span>
+<span class="font-headline-sm text-headline-sm text-primary-fixed-dim font-bold mt-0.5">98.4<span class="text-xs text-secondary ml-0.5">%</span></span>
+<span class="font-label-sm text-[9px] text-primary-container">Optimal Index</span>
+</div>
+</div>
+</section>
+<section class="min-h-[663px] relative z-10 px-4 py-8 pointer-events-auto flex flex-col justify-end" id="cervical-section">
+<div class="bg-surface-container-lowest/90 backdrop-blur-xl p-5 rounded-xl shadow-[0_0_24px_-4px_rgba(0,240,255,0.25)] flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary-container shadow-[0_0_8px_#00f0ff]"></span>
+<span class="font-label-md text-label-md text-primary-container tracking-wider uppercase">REGION 01 • CRANIAL COUPLING</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary px-2 py-0.5 rounded bg-surface-container-high">C1–C7</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary font-semibold tracking-tight">CERVICAL SEGMENT</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Atlas (C1) and Axis (C2) facilitate 180° rotation and multi-axis lateral tilt while bearing continuous cranium mass.</p>
+</div>
+<div class="grid grid-cols-3 gap-2 bg-surface-container-low/70 p-3 rounded-lg">
+<div>
+<span class="font-label-sm text-[10px] text-secondary block">CURVATURE</span>
+<span class="font-label-md text-label-md text-tertiary font-bold">-28.4°</span>
+<span class="font-label-sm text-[9px] text-on-surface-variant block">Lordotic (-20 to -40)</span>
+</div>
+<div>
+<span class="font-label-sm text-[10px] text-secondary block">BODY HEIGHT</span>
+<span class="font-label-md text-label-md text-tertiary font-bold">14.0 mm</span>
+<span class="font-label-sm text-[9px] text-on-surface-variant block">Mean C3-C7</span>
+</div>
+<div>
+<span class="font-label-sm text-[10px] text-secondary block">CANAL CALIBER</span>
+<span class="font-label-md text-label-md text-primary-fixed-dim font-bold">16.5 mm</span>
+<span class="font-label-sm text-[9px] text-primary-container block">Adequate space</span>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-container-high/60">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[18px]">water_drop</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-label-sm text-label-sm text-tertiary">DISC C5-C6 STATUS</span>
+<span class="px-1.5 py-0.2 rounded text-[9px] font-label-sm bg-primary-container/20 text-primary-container">HEALTHY</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Herniation risk: LOW • Hydration 94%</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary-container text-[20px]">check_circle</span>
+</div>
+<button class="w-full py-3 px-4 rounded-lg bg-surface-container-high text-primary-container hover:bg-surface-bright active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-md" type="button">
+<span class="material-symbols-outlined text-[18px]">hub</span>
+<span class="font-label-md text-label-md font-semibold tracking-wider uppercase">Isolate Cervical Mesh &amp; Nerve Roots</span>
+</button>
+</div>
+</section>
+<section class="min-h-[751px] relative z-10 px-4 py-8 pointer-events-auto flex flex-col justify-end" id="thoracic-section">
+<div class="bg-surface-container-lowest/90 backdrop-blur-xl p-5 rounded-xl shadow-[0_0_24px_-4px_rgba(0,162,230,0.2)] flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#89ceff]"></span>
+<span class="font-label-md text-label-md text-secondary tracking-wider uppercase">REGION 02 • THORACIC CAGE</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary px-2 py-0.5 rounded bg-surface-container-high">T1–T12</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary font-semibold tracking-tight">THORACIC SEGMENT</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Dorsal ridge and elongated spinous processes project downward, anchoring 12 paired costal ribs and protecting vital cardiopulmonary organs.</p>
+</div>
+<div class="grid grid-cols-2 gap-2 bg-surface-container-low/70 p-3 rounded-lg">
+<div>
+<span class="font-label-sm text-[10px] text-secondary block">KYPHOTIC CURVE</span>
+<span class="font-label-md text-label-md text-tertiary font-bold">+34.8°</span>
+<span class="font-label-sm text-[9px] text-on-surface-variant block">Normal (+20° to +40°)</span>
+</div>
+<div>
+<span class="font-label-sm text-[10px] text-secondary block">DORSAL RIDGE DEV</span>
+<span class="font-label-md text-label-md text-primary-fixed-dim font-bold">0.2 mm</span>
+<span class="font-label-sm text-[9px] text-primary-container block">In-line alignment</span>
+</div>
+<div class="col-span-2 pt-1 border-t border-outline-variant/30 flex justify-between items-center text-on-surface-variant">
+<span class="font-label-sm text-label-sm">Facet Joint Angle:</span>
+<span class="font-label-sm text-label-sm font-bold text-tertiary">Coronal (60° to Transverse)</span>
+</div>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-high/60 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">compress</span>
+<div>
+<p class="font-label-sm text-label-sm text-tertiary">T7–T8 ROTATIONAL RIGIDITY</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Costovertebral anchoring limits torsion</p>
+</div>
+</div>
+<span class="font-label-md text-label-md text-primary font-mono">1.1 Nm/deg</span>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<button class="py-2.5 px-3 rounded-lg bg-surface-container-high text-secondary hover:text-primary hover:bg-surface-bright transition-all flex items-center justify-center gap-1.5 text-center" type="button">
+<span class="material-symbols-outlined text-[16px]">device_hub</span>
+<span class="font-label-sm text-[10px] font-semibold uppercase">Costovertebral Join</span>
+</button>
+<button class="py-2.5 px-3 rounded-lg bg-surface-container-high text-secondary hover:text-primary hover:bg-surface-bright transition-all flex items-center justify-center gap-1.5 text-center" type="button">
+<span class="material-symbols-outlined text-[16px]">show_chart</span>
+<span class="font-label-sm text-[10px] font-semibold uppercase">Stress Vector</span>
+</button>
+</div>
+</div>
+</section>
+<section class="min-h-[751px] relative z-10 px-4 py-8 pointer-events-auto flex flex-col justify-end" id="lumbar-section">
+<div class="bg-surface-container-lowest/90 backdrop-blur-xl p-5 rounded-xl shadow-[0_0_24px_-4px_rgba(0,240,255,0.2)] flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary-container shadow-[0_0_8px_#00f0ff]"></span>
+<span class="font-label-md text-label-md text-primary-container tracking-wider uppercase">REGION 03 • PRIMARY LOAD AXIS</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary px-2 py-0.5 rounded bg-surface-container-high">L1–L5</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary font-semibold tracking-tight">LUMBAR SEGMENT</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Massive reniform vertebral bodies designed for vertical axial load bearing, flexion, and shock dampening under ground reaction forces.</p>
+</div>
+<div class="grid grid-cols-3 gap-2 bg-surface-container-low/70 p-3 rounded-lg">
+<div>
+<span class="font-label-sm text-[10px] text-secondary block">LORDOSIS</span>
+<span class="font-label-md text-label-md text-tertiary font-bold">-48.2°</span>
+<span class="font-label-sm text-[9px] text-on-surface-variant block">Range (-40° to -60°)</span>
+</div>
+<div>
+<span class="font-label-sm text-[10px] text-secondary block">DISC DEPTH</span>
+<span class="font-label-md text-label-md text-tertiary font-bold">10.4 mm</span>
+<span class="font-label-sm text-[9px] text-on-surface-variant block">L4-L5 Interspace</span>
+</div>
+<div>
+<span class="font-label-sm text-[10px] text-secondary block">INTRADISCAL</span>
+<span class="font-label-md text-label-md text-primary-fixed-dim font-bold">0.85 MPa</span>
+<span class="font-label-sm text-[9px] text-primary-container block">Standing Neutral</span>
+</div>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-high/60 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-tertiary uppercase">L4-L5 / L5-S1 BUFFER INTEGRITY</span>
+<span class="font-label-sm text-label-sm text-primary-container font-mono">96.8% HIGH</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="w-[96%] h-full rounded-full bg-primary-container"></div>
+</div>
+<p class="font-body-sm text-[11px] text-on-surface-variant">Annulus fibrosus concentric lamellae fully intact; no focal nuclear migration detected.</p>
+</div>
+<button class="w-full py-3 px-4 rounded-lg bg-surface-container-high text-primary hover:bg-surface-bright active:scale-[0.98] transition-all flex items-center justify-between shadow-md" type="button">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary">alt_route</span>
+<span class="font-label-md text-label-md font-semibold tracking-wider uppercase">Inspect Sciatic Nerve Channel</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-primary-container">chevron_right</span>
+</button>
+</div>
+</section>
+<section class="min-h-[663px] relative z-10 px-4 pt-8 pb-24 pointer-events-auto flex flex-col justify-end" id="sacrum-section">
+<div class="bg-surface-container-lowest/90 backdrop-blur-xl p-5 rounded-xl shadow-[0_0_24px_-4px_rgba(0,219,233,0.25)] flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-surface-tint shadow-[0_0_8px_#00dbe9]"></span>
+<span class="font-label-md text-label-md text-surface-tint tracking-wider uppercase">REGION 04 • PELVIC KEYSTONE</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary px-2 py-0.5 rounded bg-surface-container-high">S1–COCCYX</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-primary font-semibold tracking-tight">SACRAL &amp; COCCYGEAL BASE</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Five fused sacral segments locking into the iliac wings. Acts as the triangular transmission keystone distributing spinal loads down to the femurs.</p>
+</div>
+<div class="grid grid-cols-3 gap-2 bg-surface-container-low/70 p-3 rounded-lg text-center">
+<div>
+<span class="font-label-sm text-[10px] text-secondary block">PELVIC INCIDENCE</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold mt-0.5">52°</span>
+<span class="font-label-sm text-[9px] text-on-surface-variant block">Ideal anatomic</span>
+</div>
+<div>
+<span class="font-label-sm text-[10px] text-secondary block">SACRAL SLOPE</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold mt-0.5">39°</span>
+<span class="font-label-sm text-[9px] text-on-surface-variant block">Horizontal tilt</span>
+</div>
+<div>
+<span class="font-label-sm text-[10px] text-secondary block">LUMBOSACRAL</span>
+<span class="font-headline-sm text-headline-sm text-primary font-bold mt-0.5">138°</span>
+<span class="font-label-sm text-[9px] text-on-surface-variant block">Angle to L5</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 pt-1">
+<button class="w-full py-3 px-4 rounded-lg bg-surface-container-high text-primary-container hover:bg-surface-bright active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-md" type="button">
+<span class="material-symbols-outlined text-[18px]">download_for_offline</span>
+<span class="font-label-md text-label-md font-semibold tracking-wider uppercase">Export 3D DICOM / STL Tomography</span>
+</button>
+<button class="w-full py-2.5 px-4 rounded-lg bg-surface-container-low text-secondary hover:text-primary active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">play_circle</span>
+<span class="font-label-md text-label-md font-semibold tracking-wider uppercase">Full Spine Kinetic Simulation</span>
+</button>
+</div>
+</div>
+</section>
+<div class="fixed bottom-20 left-0 right-0 z-40 px-3 pointer-events-none">
+<div class="max-w-md mx-auto p-1.5 rounded-full bg-surface-container-lowest/85 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.6)] flex items-center justify-between gap-1 pointer-events-auto">
+<button class="flex-1 py-1 px-2 rounded-full hover:bg-surface-container-high text-secondary hover:text-primary transition-all text-center" onclick="document.getElementById('cervical-section').scrollIntoView({behavior: 'smooth'})" type="button">
+<span class="font-label-sm text-[10px] font-bold block">C1-C7</span>
+<span class="font-label-sm text-[8px] opacity-70 block">CERV</span>
+</button>
+<button class="flex-1 py-1 px-2 rounded-full hover:bg-surface-container-high text-secondary hover:text-primary transition-all text-center" onclick="document.getElementById('thoracic-section').scrollIntoView({behavior: 'smooth'})" type="button">
+<span class="font-label-sm text-[10px] font-bold block">T1-T12</span>
+<span class="font-label-sm text-[8px] opacity-70 block">THOR</span>
+</button>
+<button class="flex-1 py-1 px-2 rounded-full hover:bg-surface-container-high text-secondary hover:text-primary transition-all text-center" onclick="document.getElementById('lumbar-section').scrollIntoView({behavior: 'smooth'})" type="button">
+<span class="font-label-sm text-[10px] font-bold block">L1-L5</span>
+<span class="font-label-sm text-[8px] opacity-70 block">LUMB</span>
+</button>
+<button class="flex-1 py-1 px-2 rounded-full hover:bg-surface-container-high text-secondary hover:text-primary transition-all text-center" onclick="document.getElementById('sacrum-section').scrollIntoView({behavior: 'smooth'})" type="button">
+<span class="font-label-sm text-[10px] font-bold block">S1-S5</span>
+<span class="font-label-sm text-[8px] opacity-70 block">SACR</span>
+</button>
+</div>
+</div>
+</div></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_-4px_24px_rgba(0,0,0,0.6)]" data-active-classes="text-primary-container bg-surface-container-high"><div class="flex justify-between items-center h-20 px-space-sm"><a aria-current="page" class="flex-1 flex flex-col items-center justify-center h-14 rounded-lg transition-all text-primary-container bg-surface-container-high" data-path="cervical-navigator" href="#"><span class="material-symbols-outlined text-[20px]">accessibility_new</span><span class="font-label-sm text-label-sm mt-0.5 tracking-wider font-semibold">CERVICAL</span><span class="font-label-sm text-[9px] opacity-60">C1-C7</span></a><a class="flex-1 flex flex-col items-center justify-center h-14 rounded-lg text-on-surface-variant transition-all" data-path="thoracic-navigator" href="#"><span class="material-symbols-outlined text-[20px]">segment</span><span class="font-label-sm text-label-sm mt-0.5 tracking-wider font-semibold">THORACIC</span><span class="font-label-sm text-[9px] opacity-60">T1-T12</span></a><a class="flex-1 flex flex-col items-center justify-center h-14 rounded-lg text-on-surface-variant transition-all" data-path="lumbar-navigator" href="#"><span class="material-symbols-outlined text-[20px]">view_in_ar</span><span class="font-label-sm text-label-sm mt-0.5 tracking-wider font-semibold">LUMBAR</span><span class="font-label-sm text-[9px] opacity-60">L1-L5</span></a><a class="flex-1 flex flex-col items-center justify-center h-14 rounded-lg text-on-surface-variant transition-all" data-path="sacrum-navigator" href="#"><span class="material-symbols-outlined text-[20px]">expand_more</span><span class="font-label-sm text-label-sm mt-0.5 tracking-wider font-semibold">SACRUM</span><span class="font-label-sm text-[9px] opacity-60">S1-S5</span></a><a class="flex-1 flex flex-col items-center justify-center h-14 rounded-lg text-on-surface-variant transition-all" data-path="diagnostic-suite" href="#"><span class="material-symbols-outlined text-[20px]">vital_signs</span><span class="font-label-sm text-label-sm mt-0.5 tracking-wider font-semibold">METRICS</span><span class="font-label-sm text-[9px] opacity-60">COBB/DENS</span></a></div></nav></body></html>

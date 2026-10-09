@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+<!-- STITCH_THREEJS_START:ANIMATION_5 class="fixed inset-0 w-full h-full bg-transparent" -->
+<div class="fixed inset-0 w-full h-full bg-transparent" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_5" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_5');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  const container = document.getElementById('threejs-container') || document.body;
+const width = container.clientWidth || window.innerWidth;
+const height = container.clientHeight || window.innerHeight;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+camera.position.set(0, 0, 19);
+
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+container.appendChild(renderer.domElement);
+
+// Dark Fantasy Occult & Ethereal Lighting
+const ambientLight = new THREE.AmbientLight(0x180b2a, 1.2);
+scene.add(ambientLight);
+
+// Spectral Violet Directional Light
+const spectralLight1 = new THREE.DirectionalLight(0xa855f7, 2.2);
+spectralLight1.position.set(8, 12, 10);
+scene.add(spectralLight1);
+
+// Crimson Nether Rim Light
+const spectralLight2 = new THREE.DirectionalLight(0xe11d48, 1.8);
+spectralLight2.position.set(-8, -10, -6);
+scene.add(spectralLight2);
+
+// Occult Cyan/Emerald Point Light
+const soulPointLight = new THREE.PointLight(0x06b6d4, 2.5, 35);
+soulPointLight.position.set(0, 1, 6);
+scene.add(soulPointLight);
+
+// Group for the spine
+const spineGroup = new THREE.Group();
+scene.add(spineGroup);
+
+// Dark Fantasy Bone Materials
+// Weathered cursed ivory bone
+const cursedBoneMaterial = new THREE.MeshPhongMaterial({
+  color: 0xded1c1,
+  emissive: 0x1f1424,
+  specular: 0xd8b4fe,
+  shininess: 50,
+  flatShading: false
+});
+
+// Soul / Necrotic ethereal disc material
+const soulDiscMaterial = new THREE.MeshPhongMaterial({
+  color: 0x9333ea,
+  emissive: 0x581c87,
+  transparent: true,
+  opacity: 0.88,
+  shininess: 90
+});
+
+// Glowing Spectral Marrow / Core
+const soulCoreMaterial = new THREE.MeshPhongMaterial({
+  color: 0x22d3ee,
+  emissive: 0x0891b2,
+  shininess: 100
+});
+
+const totalVertebrae = 24;
+const vertebraeMeshes = [];
+
+for (let i = 0; i < totalVertebrae; i++) {
+  const vGroup = new THREE.Group();
+  const t = i / (totalVertebrae - 1);
+  const yPos = 8.8 - (i * 0.72);
+  
+  // Gothic arch S-curvature
+  const zCurve = Math.sin(t * Math.PI * 2.2) * 1.4 - 0.35;
+  const scale = 0.58 + (t * 0.72);
+  
+  // Vertebral body with sharp gothic contours
+  const bodyGeo = new THREE.CylinderGeometry(0.72 * scale, 0.78 * scale, 0.36 * scale, 14);
+  const bodyMesh = new THREE.Mesh(bodyGeo, cursedBoneMaterial);
+  bodyMesh.rotation.y = Math.PI / 7;
+  vGroup.add(bodyMesh);
+
+  // Ethereal glowing disc
+  if (i < totalVertebrae - 1) {
+    const discGeo = new THREE.CylinderGeometry(0.7 * scale, 0.74 * scale, 0.15 * scale, 14);
+    const discMesh = new THREE.Mesh(discGeo, soulDiscMaterial);
+    discMesh.position.y = -0.25 * scale;
+    vGroup.add(discMesh);
+  }
+
+  // Sharp gothic spinous process (dorsal talon / spine blade)
+  const talonGeo = new THREE.ConeGeometry(0.22 * scale, 1.45 * scale, 6);
+  const talonMesh = new THREE.Mesh(talonGeo, cursedBoneMaterial);
+  talonMesh.position.set(0, -0.18 * scale, -0.82 * scale);
+  talonMesh.rotation.x = -Math.PI / 2.25;
+  vGroup.add(talonMesh);
+
+  // Transverse processes (winged skeletal ribs)
+  const wingGeo = new THREE.BoxGeometry(1.8 * scale, 0.2 * scale, 0.35 * scale);
+  const wingMesh = new THREE.Mesh(wingGeo, cursedBoneMaterial);
+  wingMesh.position.set(0, 0, -0.32 * scale);
+  wingMesh.rotation.z = Math.sin(i * 0.45) * 0.08;
+  vGroup.add(wingMesh);
+
+  // Dorsal neural ring
+  const ringGeo = new THREE.TorusGeometry(0.44 * scale, 0.1 * scale, 6, 12, Math.PI * 1.15);
+  const ringMesh = new THREE.Mesh(ringGeo, cursedBoneMaterial);
+  ringMesh.position.set(0, 0, -0.28 * scale);
+  ringMesh.rotation.x = Math.PI / 2;
+  vGroup.add(ringMesh);
+
+  vGroup.position.set(0, yPos, zCurve);
+  vGroup.userData = { index: i, baseY: yPos, baseZ: zCurve };
+  vertebraeMeshes.push(vGroup);
+  spineGroup.add(vGroup);
+}
+
+// Cursed Sacrum Keystone & Horned Coccyx
+const sacrumGroup = new THREE.Group();
+const sacrumGeo = new THREE.ConeGeometry(1.4, 2.6, 5);
+const sacrumMesh = new THREE.Mesh(sacrumGeo, cursedBoneMaterial);
+sacrumMesh.rotation.x = Math.PI + 0.32;
+sacrumMesh.position.set(0, -9.5, 0.3);
+sacrumGroup.add(sacrumMesh);
+
+// Lateral iliac crest bone wings
+const iliacL = new THREE.ConeGeometry(0.6, 1.8, 4);
+const iliacMeshL = new THREE.Mesh(iliacL, cursedBoneMaterial);
+iliacMeshL.position.set(-1.4, -9.0, -0.2);
+iliacMeshL.rotation.z = 0.8;
+sacrumGroup.add(iliacMeshL);
+
+const iliacR = new THREE.ConeGeometry(0.6, 1.8, 4);
+const iliacMeshR = new THREE.Mesh(iliacR, cursedBoneMaterial);
+iliacMeshR.position.set(1.4, -9.0, -0.2);
+iliacMeshR.rotation.z = -0.8;
+sacrumGroup.add(iliacMeshR);
+
+spineGroup.add(sacrumGroup);
+
+// Internal glowing spectral nerve marrow cord
+const curvePoints = [];
+for (let i = 0; i < totalVertebrae; i++) {
+  const t = i / (totalVertebrae - 1);
+  const y = 8.8 - (i * 0.72);
+  const z = (Math.sin(t * Math.PI * 2.2) * 1.4 - 0.35) - 0.26;
+  curvePoints.push(new THREE.Vector3(0, y, z));
+}
+curvePoints.push(new THREE.Vector3(0, -9.3, 0.15));
+const cordCurve = new THREE.CatmullRomCurve3(curvePoints);
+const cordGeo = new THREE.TubeGeometry(cordCurve, 48, 0.1, 8, false);
+const cordMesh = new THREE.Mesh(cordGeo, soulCoreMaterial);
+spineGroup.add(cordMesh);
+
+// Floating Necrotic Soul Sparks & Ash Particles
+const particleCount = 80;
+const partGeo = new THREE.BufferGeometry();
+const partPositions = new Float32Array(particleCount * 3);
+for (let i = 0; i < particleCount; i++) {
+  const t = Math.random();
+  const pt = cordCurve.getPoint(t);
+  partPositions[i * 3] = pt.x + (Math.random() - 0.5) * 2.2;
+  partPositions[i * 3 + 1] = pt.y + (Math.random() - 0.5) * 1.2;
+  partPositions[i * 3 + 2] = pt.z + (Math.random() - 0.5) * 2.0;
+}
+partGeo.setAttribute('position', new THREE.BufferAttribute(partPositions, 3));
+const partMat = new THREE.PointsMaterial({
+  color: 0xc084fc,
+  size: 0.22,
+  transparent: true,
+  opacity: 0.85
+});
+const particles = new THREE.Points(partGeo, partMat);
+spineGroup.add(particles);
+
+// Interactive dragging & scroll synchronization
+let scrollProgress = 0;
+let targetScrollProgress = 0;
+let targetRotY = 0;
+
+function handleScroll() {
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  if (maxScroll > 0) {
+    targetScrollProgress = window.scrollY / maxScroll;
+  }
+}
+window.addEventListener('scroll', handleScroll, { passive: true });
+
+// Touch / pointer interaction
+let isDragging = false;
+let startX = 0;
+window.addEventListener('pointerdown', (e) => {
+  if (e.target.closest('#part-modal') || e.target.closest('button') || e.target.closest('input')) return;
+  isDragging = true;
+  startX = e.clientX;
+});
+window.addEventListener('pointermove', (e) => {
+  if (isDragging) {
+    const deltaX = (e.clientX - startX) * 0.012;
+    targetRotY += deltaX;
+    startX = e.clientX;
+  }
+});
+window.addEventListener('pointerup', () => { isDragging = false; });
+window.addEventListener('pointercancel', () => { isDragging = false; });
+
+window.addEventListener('resize', () => {
+  const w = container.clientWidth || window.innerWidth;
+  const h = container.clientHeight || window.innerHeight;
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h);
+});
+
+// Expose highlight function for interface clicks
+window.focusSpineSegment = function(regionIndex) {
+  // 0: Cervical, 1: Thoracic, 2: Lumbar, 3: Sacral
+  const yMap = [6.8, 1.5, -4.2, -8.6];
+  const targetY = yMap[regionIndex] || 0;
+  gsapLikeScroll(targetY);
+};
+
+let manualCamY = null;
+function gsapLikeScroll(y) {
+  manualCamY = y;
+  setTimeout(() => { manualCamY = null; }, 1800);
+}
+
+const clock = new THREE.Clock();
+function animate() {
+  requestAnimationFrame(animate);
+  const time = clock.getElapsedTime();
+
+  scrollProgress += (targetScrollProgress - scrollProgress) * 0.06;
+
+  // Camera tracking based on scroll or segment selection
+  let targetCamY = 7.2 - (scrollProgress * 16.5);
+  if (manualCamY !== null) {
+    targetCamY = manualCamY;
+  }
+  camera.position.y += (targetCamY - camera.position.y) * 0.06;
+  camera.lookAt(0, camera.position.y * 0.9, 0);
+
+  // Smooth rotation with organic undulating sway
+  spineGroup.rotation.y += (targetRotY + Math.sin(time * 0.6) * 0.18 - spineGroup.rotation.y) * 0.05;
+
+  // Dark fantasy occult undulating breathing
+  vertebraeMeshes.forEach((v, idx) => {
+    v.rotation.x = Math.sin(time * 1.8 + idx * 0.28) * 0.025;
+    v.rotation.z = Math.cos(time * 1.2 + idx * 0.2) * 0.015;
+  });
+
+  // Pulsing soul marrow light
+  soulDiscMaterial.opacity = 0.72 + Math.sin(time * 2.8) * 0.22;
+  soulPointLight.position.y = camera.position.y + Math.sin(time * 1.5) * 2;
+  particles.rotation.y = time * 0.08;
+
+  renderer.render(scene, camera);
+}
+animate();
+
+})();
+</script>
+</div>
+<!-- STITCH_THREEJS_END:ANIMATION_5 -->
+</body>
+</html>
